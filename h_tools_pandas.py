@@ -186,10 +186,11 @@ s6
 # In[24]:
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 temperatures = [4.4,5.1,6.1,6.2,6.1,6.1,5.7,5.2,4.7,4.1,3.9,3.5]
 s7 = pd.Series(temperatures, name="Temperature")
 s7.plot()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # There are *many* options for plotting your data. It is not necessary to list them all here: if you need a particular type of plot (histograms, pie charts, etc.), just look for it in the excellent [Visualization](http://pandas.pydata.org/pandas-docs/stable/visualization.html) section of pandas' documentation, and look at the example code.
@@ -222,7 +223,7 @@ temp_series
 temp_series.plot(kind="bar")
 
 plt.grid(True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Resampling
@@ -243,7 +244,7 @@ temp_series_freq_2H = temp_series_freq_2H.mean()
 
 # In[30]:
 temp_series_freq_2H.plot(kind="bar")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Note how the values have automatically been aggregated into 2-hour periods. If we look at the 6-8pm period, for example, we had a value of `5.1` at 6:30pm, and `6.1` at 7:30pm. After resampling, we just have one value of `5.6`, which is the mean of `5.1` and `6.1`. Rather than computing the mean, we could have used any other aggregation function, for example we can decide to keep the minimum value of each period:
@@ -278,7 +279,7 @@ temp_series_freq_15min.head(n=10)
 temp_series.plot(label="Period: 1 hour")
 temp_series_freq_15min.plot(label="Period: 15 minutes")
 plt.legend()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Timezones
@@ -361,7 +362,7 @@ quarterly_revenue
 
 # In[47]:
 quarterly_revenue.plot(kind="line")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # We can convert periods to timestamps by calling `to_timestamp`. By default this will give us the first day of each period, but by setting `how` and `freq`, we can get the last hour of each period:
@@ -746,14 +747,14 @@ people
 
 # In[92]:
 people.plot(kind = "line", x = "body_mass_index", y = ["height", "weight"])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can pass extra arguments supported by matplotlib's functions. For example, we can create scatterplot and pass it a list of sizes using the `s` argument of matplotlib's `scatter()` function:
 
 # In[93]:
 people.plot(kind = "scatter", x = "height", y = "weight", s=[40, 120, 200])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Again, there are way too many options to list here: the best option is to scroll through the [Visualization](http://pandas.pydata.org/pandas-docs/stable/visualization.html) page in pandas' documentation, find the plot you are interested in and look at the example code.

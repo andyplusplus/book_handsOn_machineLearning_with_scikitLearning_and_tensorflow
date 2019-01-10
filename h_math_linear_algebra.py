@@ -87,6 +87,7 @@ video[2]  # 3rd element
 # In[6]:
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 
 
 # ### 2D vectors
@@ -104,7 +105,7 @@ x_coords, y_coords = zip(u, v)
 plt.scatter(x_coords, y_coords, color=["r","b"])
 plt.axis([0, 9, 0, 6])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Vectors can also be represented as arrows. Let's create a small convenience function to draw nice arrows:
@@ -123,7 +124,7 @@ plot_vector2d(u, color="r")
 plot_vector2d(v, color="b")
 plt.axis([0, 9, 0, 6])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### 3D vectors
@@ -143,7 +144,7 @@ subplot3d = plt.subplot(111, projection='3d')
 x_coords, y_coords, z_coords = zip(a,b)
 subplot3d.scatter(x_coords, y_coords, z_coords)
 subplot3d.set_zlim3d([0, 9])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # It is a bit hard to visualize exactly where in space these two points are, so let's add vertical lines. We'll create a small convenience function to plot a list of 3d vectors with vertical lines attached:
@@ -159,7 +160,7 @@ def plot_vectors3d(ax, vectors3d, z0, **options):
 subplot3d = plt.subplot(111, projection='3d')
 subplot3d.set_zlim([0, 9])
 plot_vectors3d(subplot3d, [a,b], 0, color=("r","b"))
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Norm
@@ -193,7 +194,7 @@ plt.gca().add_artist(plt.Circle((0,0), radius, color="#DDDDDD"))
 plot_vector2d(u, color="red")
 plt.axis([0, 8.7, 0, 6])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Looks about right!
@@ -223,7 +224,7 @@ plt.text(1.8, 0.2, "v", color="b", fontsize=18)
 plt.text(3.1, 5.6, "v", color="b", fontsize=18)
 plt.text(2.4, 2.5, "u+v", color="g", fontsize=18)
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Vector addition is **commutative**, meaning that $\textbf{u} + \textbf{v} = \textbf{v} + \textbf{u}$. You can see it on the previous image: following $\textbf{u}$ *then* $\textbf{v}$ leads to the same point as following $\textbf{v}$ *then* $\textbf{u}$.
@@ -257,7 +258,7 @@ plt.text(3.5, 0.4, "v", color="r", fontsize=18)
 
 plt.axis([0, 6, 0, 5])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Finally, substracting a vector is like adding the opposite vector.
@@ -294,7 +295,7 @@ plot_vector2d(k * t3, color="b", linestyle=":")
 
 plt.axis([0, 9, 0, 9])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # As you might guess, dividing a vector by a scalar is equivalent to multiplying by its inverse:
@@ -323,7 +324,7 @@ plt.text(0.3, 0.3, "$\hat{u}$", color="k", fontsize=18)
 plt.text(1.5, 0.7, "$u$", color="b", fontsize=18)
 plt.axis([-1.5, 5.5, -1.5, 3.5])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Dot product
@@ -426,7 +427,7 @@ plt.text(0.8, 3, "$u$", color="r", fontsize=18)
 
 plt.axis([0, 8, 0, 5.5])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Matrices
@@ -969,7 +970,7 @@ P = np.array([
 x_coords_P, y_coords_P = P
 plt.scatter(x_coords_P, y_coords_P)
 plt.axis([0, 5, 0, 4])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Of course we could also have stored the same 4 vectors as row vectors instead of column vectors, resulting in a $4 \times 2$ matrix (the transpose of $P$, in fact). It is really an arbitrary choice.
@@ -981,7 +982,7 @@ plt.plot(x_coords_P, y_coords_P, "bo")
 plt.plot(x_coords_P, y_coords_P, "b--")
 plt.axis([0, 5, 0, 4])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Or you can represent it as a polygon: matplotlib's `Polygon` class expects an $n \times 2$ NumPy array, not a $2 \times n$ array, so we just need to give it $P^T$:
@@ -991,7 +992,7 @@ from matplotlib.patches import Polygon
 plt.gca().add_artist(Polygon(P.T))
 plt.axis([0, 5, 0, 4])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Geometric applications of matrix operations
@@ -1023,7 +1024,7 @@ plt.text(4.4, 0.2, "$H_{*,4}$", color="k", fontsize=18)
 
 plt.axis([0, 5, 0, 4])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # If we add a matrix full of identical vectors, we get a simple geometric translation:
@@ -1042,7 +1043,7 @@ for vector, origin in zip(H2.T, P.T):
 
 plt.axis([0, 5, 0, 4])
 plt.grid()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Although matrices can only be added together if they have the same size, NumPy allows adding a row vector or a column vector to a matrix: this is called *broadcasting* and is explained in further details in the [NumPy tutorial](tools_numpy.ipynb). We could have obtained the same result as above with:
@@ -1069,7 +1070,7 @@ def plot_transformation(P_before, P_after, text_before, text_after, axis = [0, 5
 
 P_rescaled = 0.60 * P
 plot_transformation(P, P_rescaled, "$P$", "$0.6 P$", arrows=True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Matrix multiplication – Projection onto an axis
@@ -1104,7 +1105,7 @@ def plot_projection(U, P):
 
     plt.axis([0, 5, 0, 4])
     plt.grid()
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 plot_projection(U, P)
 
@@ -1145,7 +1146,7 @@ V.dot(P)
 # In[96]:
 P_rotated = V.dot(P)
 plot_transformation(P, P_rotated, "$P$", "$VP$", [-2, 6, -2, 4], arrows=True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Matrix $V$ is called a **rotation matrix**.
@@ -1186,7 +1187,7 @@ F_shear = np.array([
     ])
 plot_transformation(P, F_shear.dot(P), "$P$", "$F_{shear} P$",
                     axis=[0, 10, 0, 7])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Let's look at how this transformation affects the **unit square**: 
@@ -1198,7 +1199,7 @@ Square = np.array([
     ])
 plot_transformation(Square, F_shear.dot(Square), "$Square$", "$F_{shear} Square$",
                     axis=[0, 2.6, 0, 1.8])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Now let's look at a **squeeze mapping**:
@@ -1210,7 +1211,7 @@ F_squeeze = np.array([
     ])
 plot_transformation(P, F_squeeze.dot(P), "$P$", "$F_{squeeze} P$",
                     axis=[0, 7, 0, 5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The effect on the unit square is:
@@ -1218,7 +1219,7 @@ plt.show()
 # In[100]:
 plot_transformation(Square, F_squeeze.dot(Square), "$Square$", "$F_{squeeze} Square$",
                     axis=[0, 1.8, 0, 1.2])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Let's show a last one: reflection through the horizontal axis:
@@ -1230,7 +1231,7 @@ F_reflect = np.array([
     ])
 plot_transformation(P, F_reflect.dot(P), "$P$", "$F_{reflect} P$",
                     axis=[-2, 9, -4.5, 4.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Matrix inverse
@@ -1248,7 +1249,7 @@ P_unsheared = F_inv_shear.dot(P_sheared)
 plot_transformation(P_sheared, P_unsheared, "$P_{sheared}$", "$P_{unsheared}$",
                     axis=[0, 10, 0, 7])
 plt.plot(P[0], P[1], "b--")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # We applied a shear mapping on $P$, just like we did before, but then we applied a second transformation to the result, and *lo and behold* this had the effect of coming back to the original $P$ (we plotted the original $P$'s outline to double check). The second transformation is the inverse of the first one.
@@ -1267,7 +1268,7 @@ plt.plot([0, 0, 1, 1, 0, 0.1, 0.1, 0, 0.1, 1.1, 1.0, 1.1, 1.1, 1.0, 1.1, 0.1],
          [0, 1, 1, 0, 0, 0.1, 1.1, 1.0, 1.1, 1.1, 1.0, 1.1, 0.1, 0, 0.1, 0.1],
          "r-")
 plt.axis([-0.5, 2.1, -0.5, 1.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Looking at this image, it is impossible to tell whether this is the projection of a cube or the projection of a narrow rectangular object. Some information has been lost in the projection.
@@ -1281,7 +1282,7 @@ F_project = np.array([
     ])
 plot_transformation(P, F_project.dot(P), "$P$", "$F_{project} \cdot P$",
                     axis=[0, 6, -1, 4])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # This transformation matrix performs a projection onto the horizontal axis. Our polygon gets entirely flattened out so some information is entirely lost and it is impossible to go back to the original polygon using a linear transformation. In other words, $F_{project}$ has no inverse. Such a square matrix that cannot be inversed is called a **singular matrix** (aka degenerate matrix). If we ask NumPy to calculate its inverse, it raises an exception:
@@ -1303,7 +1304,7 @@ F_project_30 = np.array([
          ])
 plot_transformation(P, F_project_30.dot(P), "$P$", "$F_{project\_30} \cdot P$",
                     axis=[0, 6, -1, 4])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # But this time, due to floating point rounding errors, NumPy manages to calculate an inverse (notice how large the elements are, though):
@@ -1345,7 +1346,7 @@ F_involution  = np.array([
     ])
 plot_transformation(P, F_involution.dot(P), "$P$", "$F_{involution} \cdot P$",
                     axis=[-8, 5, -4, 4])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Finally, a square matrix $H$ whose inverse is its own transpose is an **orthogonal matrix**:
@@ -1437,7 +1438,7 @@ F_scale = np.array([
     ])
 plot_transformation(P, F_scale.dot(P), "$P$", "$F_{scale} \cdot P$",
                     axis=[0, 6, -1, 4])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # We rescaled the polygon by a factor of 1/2 on both vertical and horizontal axes so the surface area of the resulting polygon is 1/4$^{th}$ of the original polygon. Let's compute the determinant and check that:
@@ -1527,7 +1528,7 @@ F_shear
 # In[129]:
 plot_transformation(Square, V_T.dot(Square), "$Square$", "$V^T \cdot Square$",
                     axis=[-0.5, 3.5 , -1.5, 1.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Now let's rescale along the vertical and horizontal axes using $\Sigma$:
@@ -1535,7 +1536,7 @@ plt.show()
 # In[130]:
 plot_transformation(V_T.dot(Square), S.dot(V_T).dot(Square), "$V^T \cdot Square$", "$\Sigma \cdot V^T \cdot Square$",
                     axis=[-0.5, 3.5 , -1.5, 1.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Finally, we apply the second rotation $U$:
@@ -1543,7 +1544,7 @@ plt.show()
 # In[131]:
 plot_transformation(S.dot(V_T).dot(Square), U.dot(S).dot(V_T).dot(Square),"$\Sigma \cdot V^T \cdot Square$", "$U \cdot \Sigma \cdot V^T \cdot Square$",
                     axis=[-0.5, 3.5 , -1.5, 1.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # And we can see that the result is indeed a shear mapping of the original unit square.

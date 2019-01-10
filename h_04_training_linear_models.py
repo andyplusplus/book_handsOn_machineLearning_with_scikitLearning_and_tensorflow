@@ -26,6 +26,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.ioff()
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
@@ -61,7 +62,7 @@ plt.xlabel("$x_1$", fontsize=18)
 plt.ylabel("$y$", rotation=0, fontsize=18)
 plt.axis([0, 2, 0, 15])
 save_fig("generated_data_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[4]:
 X_b = np.c_[np.ones((100, 1)), X]  # add x0 = 1 to each instance
@@ -80,7 +81,7 @@ y_predict
 plt.plot(X_new, y_predict, "r-")
 plt.plot(X, y, "b.")
 plt.axis([0, 2, 0, 15])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The figure in the book actually corresponds to the following code, with a legend and axis labels:
@@ -93,7 +94,7 @@ plt.ylabel("$y$", rotation=0, fontsize=18)
 plt.legend(loc="upper left", fontsize=14)
 plt.axis([0, 2, 0, 15])
 save_fig("linear_model_predictions")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[9]:
 from sklearn.linear_model import LinearRegression
@@ -169,7 +170,7 @@ plt.subplot(132); plot_gradient_descent(theta, eta=0.1, theta_path=theta_path_bg
 plt.subplot(133); plot_gradient_descent(theta, eta=0.5)
 
 save_fig("gradient_descent_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Stochastic Gradient Descent
@@ -207,7 +208,7 @@ plt.xlabel("$x_1$", fontsize=18)                     # not shown
 plt.ylabel("$y$", rotation=0, fontsize=18)           # not shown
 plt.axis([0, 2, 0, 15])                              # not shown
 save_fig("sgd_plot")                                 # not shown
-plt.show()                                           # not shown
+show_plt(plt, is_plt_show=False)                                           # not shown
 
 # In[20]:
 theta
@@ -268,7 +269,7 @@ plt.xlabel(r"$\theta_0$", fontsize=20)
 plt.ylabel(r"$\theta_1$   ", fontsize=20, rotation=0)
 plt.axis([2.5, 4.5, 2.3, 3.9])
 save_fig("gradient_descent_paths_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Polynomial regression
@@ -290,7 +291,7 @@ plt.xlabel("$x_1$", fontsize=18)
 plt.ylabel("$y$", rotation=0, fontsize=18)
 plt.axis([-3, 3, 0, 10])
 save_fig("quadratic_data_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[30]:
 from sklearn.preprocessing import PolynomialFeatures
@@ -317,7 +318,7 @@ plt.ylabel("$y$", rotation=0, fontsize=18)
 plt.legend(loc="upper left", fontsize=14)
 plt.axis([-3, 3, 0, 10])
 save_fig("quadratic_predictions_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[34]:
 from sklearn.preprocessing import StandardScaler
@@ -342,7 +343,7 @@ plt.xlabel("$x_1$", fontsize=18)
 plt.ylabel("$y$", rotation=0, fontsize=18)
 plt.axis([-3, 3, 0, 10])
 save_fig("high_degree_polynomials_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[35]:
 from sklearn.metrics import mean_squared_error
@@ -369,7 +370,7 @@ lin_reg = LinearRegression()
 plot_learning_curves(lin_reg, X, y)
 plt.axis([0, 80, 0, 3])                         # not shown in the book
 save_fig("underfitting_learning_curves_plot")   # not shown
-plt.show()                                      # not shown
+show_plt(plt, is_plt_show=False)                                      # not shown
 
 # In[37]:
 from sklearn.pipeline import Pipeline
@@ -382,7 +383,7 @@ polynomial_regression = Pipeline([
 plot_learning_curves(polynomial_regression, X, y)
 plt.axis([0, 80, 0, 3])           # not shown
 save_fig("learning_curves_plot")  # not shown
-plt.show()                        # not shown
+show_plt(plt, is_plt_show=False)                        # not shown
 
 
 # # Regularized models
@@ -422,7 +423,7 @@ plt.subplot(122)
 plot_model(Ridge, polynomial=True, alphas=(0, 10**-5, 1), random_state=42)
 
 save_fig("ridge_regression_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[39]:
 from sklearn.linear_model import Ridge
@@ -451,7 +452,7 @@ plt.subplot(122)
 plot_model(Lasso, polynomial=True, alphas=(0, 10**-7, 1), tol=1, random_state=42)
 
 save_fig("lasso_regression_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[43]:
 from sklearn.linear_model import Lasso
@@ -516,7 +517,7 @@ plt.legend(loc="upper right", fontsize=14)
 plt.xlabel("Epoch", fontsize=14)
 plt.ylabel("RMSE", fontsize=14)
 save_fig("early_stopping_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[46]:
 from sklearn.base import clone
@@ -541,6 +542,7 @@ best_epoch, best_model
 # In[48]:
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 import numpy as np
 
 # In[49]:
@@ -617,7 +619,7 @@ for i, N, l1, l2, title in ((0, N1, 0.5, 0, "Lasso"), (1, N2, 0,  0.1, "Ridge"))
         plt.xlabel(r"$\theta_1$", fontsize=20)
 
 save_fig("lasso_vs_ridge_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Logistic regression
@@ -635,7 +637,7 @@ plt.xlabel("t")
 plt.legend(loc="upper left", fontsize=20)
 plt.axis([-10, 10, -0.1, 1.1])
 save_fig("logistic_function_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[52]:
 from sklearn import datasets
@@ -683,7 +685,7 @@ plt.ylabel("Probability", fontsize=14)
 plt.legend(loc="center left", fontsize=14)
 plt.axis([0, 3, -0.02, 1.02])
 save_fig("logistic_regression_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[58]:
 decision_boundary
@@ -727,7 +729,7 @@ plt.xlabel("Petal length", fontsize=14)
 plt.ylabel("Petal width", fontsize=14)
 plt.axis([2.9, 7, 0.8, 2.7])
 save_fig("logistic_regression_contour_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[61]:
 X = iris["data"][:, (2, 3)]  # petal length, petal width
@@ -766,7 +768,7 @@ plt.ylabel("Petal width", fontsize=14)
 plt.legend(loc="center left", fontsize=14)
 plt.axis([0, 7, 0, 3.5])
 save_fig("softmax_regression_contour_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[63]:
 softmax_reg.predict([[5, 2]])
@@ -1035,7 +1037,7 @@ plt.xlabel("Petal length", fontsize=14)
 plt.ylabel("Petal width", fontsize=14)
 plt.legend(loc="upper left", fontsize=14)
 plt.axis([0, 7, 0, 3.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # And now let's measure the final model's accuracy on the test set:

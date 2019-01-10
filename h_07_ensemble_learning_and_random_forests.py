@@ -26,6 +26,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -61,7 +62,7 @@ plt.ylabel("Heads ratio")
 plt.legend(loc="lower right")
 plt.axis([0, 10000, 0.42, 0.58])
 save_fig("law_of_large_numbers_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[4]:
 from sklearn.model_selection import train_test_split
@@ -165,7 +166,7 @@ plt.subplot(122)
 plot_decision_boundary(bag_clf, X, y)
 plt.title("Decision Trees with Bagging", fontsize=14)
 save_fig("decision_tree_without_and_with_bagging_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Random Forests
@@ -210,7 +211,7 @@ for i in range(15):
     tree_clf.fit(X[indices_with_replacement], y[indices_with_replacement])
     plot_decision_boundary(tree_clf, X, y, axes=[-1.5, 2.5, -1, 1.5], alpha=0.02, contour=False)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Out-of-Bag evaluation
@@ -255,7 +256,7 @@ cbar = plt.colorbar(ticks=[rnd_clf.feature_importances_.min(), rnd_clf.feature_i
 cbar.ax.set_yticklabels(['Not important', 'Very important'])
 
 save_fig("mnist_feature_importance_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # AdaBoost
@@ -293,7 +294,7 @@ for subplot, learning_rate in ((121, 1), (122, 0.5)):
         plt.text(-0.3,  0.90, "5", fontsize=14)
 
 save_fig("boosting_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[32]:
 list(m for m in dir(ada_clf) if not m.startswith("_") and m.endswith("_"))
@@ -372,7 +373,7 @@ plt.xlabel("$x_1$", fontsize=16)
 plt.ylabel("$y$", fontsize=16, rotation=0)
 
 save_fig("gradient_boosting_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[41]:
 from sklearn.ensemble import GradientBoostingRegressor
@@ -396,7 +397,7 @@ plot_predictions([gbrt_slow], X, y, axes=[-0.5, 0.5, -0.1, 0.8])
 plt.title("learning_rate={}, n_estimators={}".format(gbrt_slow.learning_rate, gbrt_slow.n_estimators), fontsize=14)
 
 save_fig("gbrt_learning_rate_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Gradient Boosting with Early stopping
@@ -439,7 +440,7 @@ plot_predictions([gbrt_best], X, y, axes=[-0.5, 0.5, -0.1, 0.8])
 plt.title("Best model (%d trees)" % bst_n_estimators, fontsize=14)
 
 save_fig("early_stopping_gbrt_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[47]:
 gbrt = GradientBoostingRegressor(max_depth=2, warm_start=True, random_state=42)

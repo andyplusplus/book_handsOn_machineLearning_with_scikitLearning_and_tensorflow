@@ -62,6 +62,7 @@ print("Updated Image Shape: {}".format(X_train[0].shape))
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 index = random.randint(0, len(X_train))

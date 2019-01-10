@@ -26,6 +26,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -108,7 +109,7 @@ plt.text(3.2, 1.80, "Depth=1", fontsize=13)
 plt.text(4.05, 0.5, "(Depth=2)", fontsize=11)
 
 save_fig("decision_tree_decision_boundaries_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Predicting classes and class probabilities
@@ -142,7 +143,7 @@ plt.text(1.0, 0.9, "Depth=0", fontsize=15)
 plt.text(1.0, 1.80, "Depth=1", fontsize=13)
 
 save_fig("decision_tree_instability_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[10]:
 from sklearn.datasets import make_moons
@@ -162,7 +163,7 @@ plot_decision_boundary(deep_tree_clf2, Xm, ym, axes=[-1.5, 2.5, -1, 1.5], iris=F
 plt.title("min_samples_leaf = {}".format(deep_tree_clf2.min_samples_leaf), fontsize=14)
 
 save_fig("min_samples_leaf_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[11]:
 angle = np.pi / 180 * 20
@@ -175,7 +176,7 @@ tree_clf_r.fit(Xr, y)
 plt.figure(figsize=(8, 3))
 plot_decision_boundary(tree_clf_r, Xr, y, axes=[0.5, 7.5, -1.0, 1], iris=False)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[12]:
 np.random.seed(6)
@@ -198,7 +199,7 @@ plt.subplot(122)
 plot_decision_boundary(tree_clf_sr, Xsr, ys, axes=[-0.7, 0.7, -0.7, 0.7], iris=False)
 
 save_fig("sensitivity_to_rotation_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Regression trees
@@ -256,7 +257,7 @@ plt.text(0.3, 0.5, "Depth=2", fontsize=13)
 plt.title("max_depth=3", fontsize=14)
 
 save_fig("tree_regression_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[16]:
 export_graphviz(
@@ -296,7 +297,7 @@ plt.xlabel("$x_1$", fontsize=18)
 plt.title("min_samples_leaf={}".format(tree_reg2.min_samples_leaf), fontsize=14)
 
 save_fig("tree_regression_regularization_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Exercise solutions

@@ -1,6 +1,9 @@
-
+#
+# Not runnable, refer to ipython Notebook
+#
+#
 # **Chapter 1 – The Machine Learning landscape**
-# 
+#
 # _This is the code used to generate some of the figures in chapter 1._
 
 # # Setup
@@ -25,6 +28,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -75,6 +79,7 @@ datapath = os.path.join("datasets", "lifesat", "")
 # Code example
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 import numpy as np
 import pandas as pd
 import sklearn.linear_model
@@ -91,7 +96,7 @@ y = np.c_[country_stats["Life satisfaction"]]
 
 # Visualize the data
 country_stats.plot(kind='scatter', x="GDP per capita", y='Life satisfaction')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # Select a linear model
 model = sklearn.linear_model.LinearRegression()
@@ -136,7 +141,6 @@ gdp_per_capita.head(2)
 # In[8]:
 full_country_stats = pd.merge(left=oecd_bli, right=gdp_per_capita, left_index=True, right_index=True)
 full_country_stats.sort_values(by="GDP per capita", inplace=True)
-full_country_stats
 
 # In[9]:
 full_country_stats[["GDP per capita", 'Life satisfaction']].loc["United States"]
@@ -165,7 +169,7 @@ for country, pos_text in position_text.items():
             arrowprops=dict(facecolor='black', width=0.5, shrink=0.1, headwidth=5))
     plt.plot(pos_data_x, pos_data_y, "ro")
 save_fig('money_happy_scatterplot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[12]:
 sample_data.to_csv(os.path.join("datasets", "lifesat", "lifesat.csv"))
@@ -189,7 +193,7 @@ plt.plot(X, 4 + 5*X/100000, "b")
 plt.text(5000, 3.5, r"$\theta_0 = 4$", fontsize=14, color="b")
 plt.text(5000, 2.6, r"$\theta_1 = 5 \times 10^{-5}$", fontsize=14, color="b")
 save_fig('tweaking_model_params_plot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[15]:
 from sklearn import linear_model
@@ -208,7 +212,7 @@ plt.plot(X, t0 + t1*X, "b")
 plt.text(5000, 3.1, r"$\theta_0 = 4.85$", fontsize=14, color="b")
 plt.text(5000, 2.2, r"$\theta_1 = 4.91 \times 10^{-5}$", fontsize=14, color="b")
 save_fig('best_fit_model_plot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[17]:
 
@@ -230,7 +234,7 @@ plt.plot([cyprus_gdp_per_capita, cyprus_gdp_per_capita], [0, cyprus_predicted_li
 plt.text(25000, 5.0, r"Prediction = 5.96", fontsize=14, color="b")
 plt.plot(cyprus_gdp_per_capita, cyprus_predicted_life_satisfaction, "ro")
 save_fig('cyprus_prediction_plot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[19]:
 sample_data[7:10]
@@ -257,6 +261,7 @@ def prepare_country_stats(oecd_bli, gdp_per_capita):
 # Code example
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 import numpy as np
 import pandas as pd
 import sklearn
@@ -273,7 +278,7 @@ y = np.c_[country_stats["Life satisfaction"]]
 
 # Visualize the data
 country_stats.plot(kind='scatter', x="GDP per capita", y='Life satisfaction')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # Select a linear model
 model = sklearn.linear_model.LinearRegression()
@@ -325,7 +330,7 @@ X = np.linspace(0, 110000, 1000)
 plt.plot(X, t0full + t1full * X, "k")
 
 save_fig('representative_training_data_scatterplot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[27]:
 full_country_stats.plot(kind='scatter', x="GDP per capita", y='Life satisfaction', figsize=(8,3))
@@ -343,7 +348,7 @@ pipeline_reg.fit(Xfull, yfull)  # TOBEHERE    name 'Xfull' is not defined
 curve = pipeline_reg.predict(X[:, np.newaxis])
 plt.plot(X, curve)
 save_fig('overfitting_model_plot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[28]:
 full_country_stats.loc[[c for c in full_country_stats.index if "W" in c.upper()]]["Life satisfaction"]
@@ -374,7 +379,7 @@ plt.plot(X, t0ridge + t1ridge * X, "b", label="Regularized linear model on parti
 plt.legend(loc="lower right")
 plt.axis([0, 110000, 0, 10])
 save_fig('ridge_model_plot')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[31]:
 backup = oecd_bli, gdp_per_capita

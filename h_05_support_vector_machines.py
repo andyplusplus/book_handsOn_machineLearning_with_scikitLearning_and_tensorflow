@@ -26,6 +26,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -109,7 +110,7 @@ plt.xlabel("Petal length", fontsize=14)
 plt.axis([0, 5.5, 0, 2])
 
 save_fig("large_margin_classification_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Sensitivity to feature scales
@@ -191,7 +192,7 @@ plt.annotate("Outlier",
 plt.axis([0, 5.5, 0, 2])
 
 save_fig("sensitivity_to_outliers_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Large margin *vs* margin violations
@@ -313,7 +314,7 @@ plt.axis([-4.5, 4.5, -1, 17])
 plt.subplots_adjust(right=1)
 
 save_fig("higher_dimensions_plot", tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[12]:
 from sklearn.datasets import make_moons
@@ -328,7 +329,7 @@ def plot_dataset(X, y, axes):
     plt.ylabel(r"$x_2$", fontsize=20, rotation=0)
 
 plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[13]:
 from sklearn.datasets import make_moons
@@ -358,7 +359,7 @@ plot_predictions(polynomial_svm_clf, [-1.5, 2.5, -1, 1.5])
 plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
 
 save_fig("moons_polynomial_svc_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[15]:
 from sklearn.svm import SVC
@@ -390,7 +391,7 @@ plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
 plt.title(r"$d=10, r=100, C=5$", fontsize=18)
 
 save_fig("moons_kernelized_polynomial_svc_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[18]:
 def gaussian_rbf(x, landmark, gamma):
@@ -450,7 +451,7 @@ plt.axis([-0.1, 1.1, -0.1, 1.1])
 plt.subplots_adjust(right=1)
 
 save_fig("kernel_method_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[19]:
 x1_example = X1D[3, 0]
@@ -491,7 +492,7 @@ for i, svm_clf in enumerate(svm_clfs):
     plt.title(r"$\gamma = {}, C = {}$".format(gamma, C), fontsize=16)
 
 save_fig("moons_rbf_svc_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Regression
@@ -555,7 +556,7 @@ plt.subplot(122)
 plot_svm_regression(svm_reg2, X, y, [0, 2, 3, 11])
 plt.title(r"$\epsilon = {}$".format(svm_reg2.epsilon), fontsize=18)
 save_fig("svm_regression_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[26]:
 np.random.seed(42)
@@ -587,7 +588,7 @@ plt.subplot(122)
 plot_svm_regression(svm_poly_reg2, X, y, [-1, 1, 0, 1])
 plt.title(r"$degree={}, C={}, \epsilon = {}$".format(svm_poly_reg2.degree, svm_poly_reg2.C, svm_poly_reg2.epsilon), fontsize=18)
 save_fig("svm_with_polynomial_kernel_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Under the hood
@@ -633,7 +634,7 @@ ax1 = fig.add_subplot(111, projection='3d')
 plot_3D_decision_function(ax1, w=svm_clf2.coef_[0], b=svm_clf2.intercept_[0])
 
 save_fig("iris_3D_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Small weight vector results in a large margin
@@ -664,7 +665,7 @@ plot_2D_decision_function(1, 0)
 plt.subplot(122)
 plot_2D_decision_function(0.5, 0, ylabel=False)
 save_fig("small_w_large_margin_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[33]:
 from sklearn.svm import SVC
@@ -695,7 +696,7 @@ plt.xlabel("$t$", fontsize=16)
 plt.axis([-2, 4, -1, 2.5])
 plt.legend(loc="upper right", fontsize=16)
 save_fig("hinge_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Extra material
@@ -925,7 +926,7 @@ plt.ylabel("Petal width", fontsize=14)
 plt.legend(loc="upper center", fontsize=14)
 plt.axis([0, 5.5, 0, 2])
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Close enough!

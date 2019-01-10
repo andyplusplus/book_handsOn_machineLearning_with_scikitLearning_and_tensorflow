@@ -26,6 +26,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -255,7 +256,7 @@ ax.set_ylim(axes[2:4])
 ax.set_zlim(axes[4:6])
 
 save_fig("dataset_3d_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[25]:
 fig = plt.figure()
@@ -296,7 +297,7 @@ ax.set_ylim(axes[2:4])
 ax.set_zlim(axes[4:6])
 
 save_fig("swiss_roll_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[28]:
 plt.figure(figsize=(11, 4))
@@ -315,7 +316,7 @@ plt.xlabel("$z_1$", fontsize=18)
 plt.grid(True)
 
 save_fig("squished_swiss_roll_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[29]:
 from matplotlib import gridspec
@@ -344,7 +345,7 @@ ax.set_ylim(axes[2:4])
 ax.set_zlim(axes[4:6])
 
 save_fig("manifold_decision_boundary_plot1")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 fig = plt.figure(figsize=(5, 4))
 ax = plt.subplot(111)
@@ -357,7 +358,7 @@ plt.ylabel("$z_2$", fontsize=18, rotation=0)
 plt.grid(True)
 
 save_fig("manifold_decision_boundary_plot2")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 fig = plt.figure(figsize=(6, 5))
 ax = plt.subplot(111, projection='3d')
@@ -376,7 +377,7 @@ ax.set_ylim(axes[2:4])
 ax.set_zlim(axes[4:6])
 
 save_fig("manifold_decision_boundary_plot3")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 fig = plt.figure(figsize=(5, 4))
 ax = plt.subplot(111)
@@ -390,7 +391,7 @@ plt.ylabel("$z_2$", fontsize=18, rotation=0)
 plt.grid(True)
 
 save_fig("manifold_decision_boundary_plot4")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # PCA
@@ -453,7 +454,7 @@ plt.xlabel("$z_1$", fontsize=18)
 plt.grid(True)
 
 save_fig("pca_best_projection")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # MNIST compression
@@ -709,7 +710,7 @@ for subplot, pca, title in ((131, lin_pca, "Linear kernel"), (132, rbf_pca, "RBF
     plt.grid(True)
 
 save_fig("kernel_pca_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[58]:
 plt.figure(figsize=(6, 5))
@@ -727,7 +728,7 @@ ax.set_yticklabels([])
 ax.set_zticklabels([])
 
 save_fig("preimage_plot", tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[59]:
 X_reduced = rbf_pca.fit_transform(X)
@@ -792,7 +793,7 @@ plt.axis([-0.065, 0.055, -0.1, 0.12])
 plt.grid(True)
 
 save_fig("lle_unrolling_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # MDS, Isomap and t-SNE
@@ -840,7 +841,7 @@ for subplot, title, X_reduced in zip((131, 132, 133), titles,
     plt.grid(True)
 
 save_fig("other_dim_reduction_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[72]:
 def learned_parameters(model):
@@ -878,7 +879,7 @@ plt.xlabel("Petal length", fontsize=14)
 plt.tick_params(labelleft='off')
 
 save_fig("classification_vs_clustering_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # A Gaussian mixture model (explained below) can actually separate these clusters pretty well.
@@ -898,7 +899,7 @@ plt.plot(X[y_pred==2, 0], X[y_pred==2, 1], "g^", label="Cluster 3")
 plt.xlabel("Petal length", fontsize=14)
 plt.ylabel("Petal width", fontsize=14)
 plt.legend(loc="upper right", fontsize=12)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[11]:
 np.sum(y_pred==y)
@@ -940,7 +941,7 @@ def plot_clusters(X, y=None):
 plt.figure(figsize=(8, 4))
 plot_clusters(X)
 save_fig("blobs_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Fit and Predict
@@ -1032,7 +1033,7 @@ def plot_decision_boundaries(clusterer, X, resolution=1000, show_centroids=True,
 plt.figure(figsize=(8, 4))
 plot_decision_boundaries(kmeans, X)
 save_fig("voronoi_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Not bad! Some of the instances near the edges were probably assigned to the wrong cluster, but overall it looks pretty good.
@@ -1106,7 +1107,7 @@ plt.subplot(326)
 plot_decision_boundaries(kmeans_iter3, X, show_ylabels=False)
 
 save_fig("kmeans_algorithm_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### K-Means Variability
@@ -1142,7 +1143,7 @@ plot_clusterer_comparison(kmeans_rnd_init1, kmeans_rnd_init2, X,
                           "Solution 1", "Solution 2 (with a different random init)")
 
 save_fig("kmeans_variability_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Inertia
@@ -1192,7 +1193,7 @@ kmeans_rnd_10_inits.fit(X)
 # In[39]:
 plt.figure(figsize=(8, 4))
 plot_decision_boundaries(kmeans_rnd_10_inits, X)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### K-Means++
@@ -1346,7 +1347,7 @@ plt.axis([1, 100, 0, 6])
 #plt.legend(fontsize=14)
 
 save_fig("minibatch_kmeans_vs_kmeans")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Finding the optimal number of clusters
@@ -1359,7 +1360,7 @@ kmeans_k8 = KMeans(n_clusters=8, random_state=42)
 
 plot_clusterer_comparison(kmeans_k3, kmeans_k8, X, "$k=3$", "$k=8$")
 save_fig("bad_n_clusters_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Ouch, these two models don't look great. What about their inertias?
@@ -1392,14 +1393,14 @@ plt.annotate('Elbow',
             )
 plt.axis([1, 8.5, 0, 1300])
 save_fig("inertia_vs_k_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # As you can see, there is an elbow at $k=4$, which means that less clusters than that would be bad, and more clusters would not help much and might cut clusters in half. So $k=4$ is a pretty good choice. Of course in this example it is not perfect since it means that the two blobs in the lower left will be considered as just a single cluster, but it's a pretty good clustering nonetheless.
 
 # In[132]:
 plot_decision_boundaries(kmeans_per_k[4-1], X)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Another approach is to look at the _silhouette score_, which is the mean _silhouette coefficient_ over all the instances. An instance's silhouette coefficient is equal to $(b - a)/\max(a, b)$ where $a$ is the mean distance to the other instances in the same cluster (it is the _mean intra-cluster distance_), and $b$ is the _mean nearest-cluster distance_, that is the mean distance to the instances of the next closest cluster (defined as the one that minimizes $b$, excluding the instance's own cluster). The silhouette coefficient can vary between -1 and +1: a coefficient close to +1 means that the instance is well inside its own cluster and far from other clusters, while a coefficient close to 0 means that it is close to a cluster boundary, and finally a coefficient close to -1 means that the instance may have been assigned to the wrong cluster.
@@ -1423,7 +1424,7 @@ plt.xlabel("$k$", fontsize=14)
 plt.ylabel("Silhouette score", fontsize=14)
 plt.axis([1.8, 8.5, 0.55, 0.7])
 save_fig("silhouette_score_vs_k_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # As you can see, this visualization is much richer than the previous one: in particular, although it confirms that $k=4$ is a very good choice, but it also underlines the fact that $k=5$ is quite good as well.
@@ -1470,7 +1471,7 @@ for k in (3, 4, 5, 6):
     plt.title("$k={}$".format(k), fontsize=16)
 
 save_fig("silhouette_analysis_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Limits of K-Means
@@ -1504,7 +1505,7 @@ plot_decision_boundaries(kmeans_bad, X, show_ylabels=False)
 plt.title("Inertia = {:.1f}".format(kmeans_bad.inertia_), fontsize=14)
 
 save_fig("bad_kmeans_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Using clustering for image segmentation
@@ -1544,7 +1545,7 @@ for idx, n_clusters in enumerate(n_colors):
     plt.axis('off')
 
 save_fig('image_segmentation_diagram', tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Using Clustering for Preprocessing
@@ -1655,7 +1656,7 @@ for index, X_representative_digit in enumerate(X_representative_digits):
     plt.axis('off')
 
 save_fig("representative_images_diagram", tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[166]:
 y_representative_digits = np.array([
@@ -1800,7 +1801,7 @@ plt.subplot(122)
 plot_dbscan(dbscan2, X, size=600, show_ylabels=False)
 
 save_fig("dbscan_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[188]:
 dbscan = dbscan2
@@ -1824,7 +1825,7 @@ plt.figure(figsize=(6, 3))
 plot_decision_boundaries(knn, X, show_centroids=False)
 plt.scatter(X_new[:, 0], X_new[:, 1], c="b", marker="+", s=200, zorder=10)
 save_fig("cluster_classification_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[194]:
 y_dist, y_pred_idx = knn.kneighbors(X_new, n_neighbors=1)
@@ -1876,7 +1877,7 @@ plot_spectral_clustering(sc1, X, size=500, alpha=0.1)
 plt.subplot(122)
 plot_spectral_clustering(sc2, X, size=4000, alpha=0.01, show_ylabels=False)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ### Agglomerative Clustering
@@ -2021,7 +2022,7 @@ plt.figure(figsize=(8, 4))
 plot_gaussian_mixture(gm, X)
 
 save_fig("gaussian_mixtures_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can impose constraints on the covariance matrices that the algorithm looks for by setting the `covariance_type` hyperparameter:
@@ -2056,12 +2057,12 @@ def compare_gaussian_mixtures(gm1, gm2, X):
 compare_gaussian_mixtures(gm_tied, gm_spherical, X)
 
 save_fig("covariance_type_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[224]:
 compare_gaussian_mixtures(gm_full, gm_diag, X)
 plt.tight_layout()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Anomaly Detection using Gaussian Mixtures
@@ -2081,7 +2082,7 @@ plt.scatter(anomalies[:, 0], anomalies[:, 1], color='r', marker='*')
 plt.ylim(ymax=5.1)
 
 save_fig("mixture_anomaly_detection_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Model selection
@@ -2153,7 +2154,7 @@ plt.annotate('Minimum',
             )
 plt.legend()
 save_fig("aic_bic_vs_k_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Let's search for best combination of values for both the number of clusters and the `covariance_type` hyperparameter:
@@ -2198,7 +2199,7 @@ np.round(bgm.weights_, 2)
 # In[160]:
 plt.figure(figsize=(8, 5))
 plot_gaussian_mixture(bgm, X)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[161]:
 bgm_low = BayesianGaussianMixture(n_components=10, max_iter=1000, n_init=1,
@@ -2227,7 +2228,7 @@ plot_gaussian_mixture(bgm_high, X[:nn], show_ylabels=False)
 plt.title("weight_concentration_prior = 10000", fontsize=14)
 
 save_fig("mixture_concentration_prior_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Note: the fact that you see only 3 regions in the right plot although there are 4 centroids is not a bug. The weight of the top-right cluster is much larger than the weight of the lower-right cluster, so the probability that any given point in this region belongs to the top right cluster is greater than the probability that it belongs to the lower-right cluster.
@@ -2251,7 +2252,7 @@ plt.subplot(122)
 plot_gaussian_mixture(bgm, X_moons, show_ylabels=False)
 
 save_fig("moons_vs_bgm_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Oops, not great... instead of detecting 2 moon-shaped clusters, the algorithm detected 8 ellipsoidal clusters. However, the density plot does not look too bad, so it might be usable for anomaly detection.
@@ -2326,7 +2327,7 @@ plt.grid(True)
 plt.title(r"$\log \, \mathcal{L}(\theta|x=2.5)$", fontsize=14)
 
 save_fig("likelihood_function_diagram")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Exercise solutions
@@ -2490,7 +2491,7 @@ plt.figure(figsize=(13,10))
 plt.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y, cmap="jet")
 plt.axis('off')
 plt.colorbar()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Isn't this just beautiful? :) This plot tells us which numbers are easily distinguishable from the others (e.g., 0s, 6s, and most 8s are rather well separated clusters), and it also tells us which numbers are often hard to distinguish (e.g., 4s and 9s, 5s and 3s, and so on).
@@ -2503,7 +2504,7 @@ cmap = matplotlib.cm.get_cmap("jet")
 for digit in (2, 3, 5):
     plt.scatter(X_reduced[y == digit, 0], X_reduced[y == digit, 1], c=cmap(digit / 9))
 plt.axis('off')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Let's see if we can produce a nicer image by running t-SNE on these 3 digits:
@@ -2521,7 +2522,7 @@ plt.figure(figsize=(9,9))
 for digit in (2, 3, 5):
     plt.scatter(X_subset_reduced[y_subset == digit, 0], X_subset_reduced[y_subset == digit, 1], c=cmap(digit / 9))
 plt.axis('off')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Much better, now the clusters have far less overlap. But some 3s are all over the place. Plus, there are two distinct clusters of 2s, and also two distinct clusters of 5s. It would be nice if we could visualize a few digits from each cluster, to understand why this is the case. Let's do that now. 
@@ -2590,7 +2591,7 @@ X_pca_reduced = PCA(n_components=2, random_state=42).fit_transform(X)
 t1 = time.time()
 print("PCA took {:.1f}s.".format(t1 - t0))
 plot_digits(X_pca_reduced, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Wow, PCA is blazingly fast! But although we do see a few clusters, there's way too much overlap. Let's try LLE:
@@ -2603,7 +2604,7 @@ X_lle_reduced = LocallyLinearEmbedding(n_components=2, random_state=42).fit_tran
 t1 = time.time()
 print("LLE took {:.1f}s.".format(t1 - t0))
 plot_digits(X_lle_reduced, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # That took a while, and the result does not look too good. Let's see what happens if we apply PCA first, preserving 95% of the variance:
@@ -2620,7 +2621,7 @@ X_pca_lle_reduced = pca_lle.fit_transform(X)
 t1 = time.time()
 print("PCA+LLE took {:.1f}s.".format(t1 - t0))
 plot_digits(X_pca_lle_reduced, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The result is more or less the same, but this time it was almost 4× faster.
@@ -2636,7 +2637,7 @@ X_mds_reduced = MDS(n_components=2, random_state=42).fit_transform(X[:m])
 t1 = time.time()
 print("MDS took {:.1f}s (on just 2,000 MNIST images instead of 10,000).".format(t1 - t0))
 plot_digits(X_mds_reduced, y[:m])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Meh. This does not look great, all clusters overlap too much. Let's try with PCA first, perhaps it will be faster?
@@ -2653,7 +2654,7 @@ X_pca_mds_reduced = pca_mds.fit_transform(X[:2000])
 t1 = time.time()
 print("PCA+MDS took {:.1f}s (on 2,000 MNIST images).".format(t1 - t0))
 plot_digits(X_pca_mds_reduced, y[:2000])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Same result, and no speedup: PCA did not help (or hurt).
@@ -2668,7 +2669,7 @@ X_lda_reduced = LinearDiscriminantAnalysis(n_components=2).fit_transform(X, y)
 t1 = time.time()
 print("LDA took {:.1f}s.".format(t1 - t0))
 plot_digits(X_lda_reduced, y, figsize=(12,12))
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # This one is very fast, and it looks nice at first, until you realize that several clusters overlap severely.
@@ -2683,7 +2684,7 @@ X_tsne_reduced = TSNE(n_components=2, random_state=42).fit_transform(X)
 t1 = time.time()
 print("t-SNE took {:.1f}s.".format(t1 - t0))
 plot_digits(X_tsne_reduced, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # It's twice slower than LLE, but still much faster than MDS, and the result looks great. Let's see if a bit of PCA can speed it up:
@@ -2698,7 +2699,7 @@ X_pca_tsne_reduced = pca_tsne.fit_transform(X)
 t1 = time.time()
 print("PCA+t-SNE took {:.1f}s.".format(t1 - t0))
 plot_digits(X_pca_tsne_reduced, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Yes, PCA roughly gave us a 25% speedup, without damaging the result. We have a winner!

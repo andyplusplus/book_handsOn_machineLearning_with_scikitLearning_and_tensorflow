@@ -29,6 +29,7 @@ np.random.seed(42)
 # To plot pretty figures
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -96,9 +97,10 @@ housing.describe()
 # In[9]:
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 housing.hist(bins=50, figsize=(20,15))
 save_fig("attribute_histogram_plots")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[10]:
 # to make this notebook's output identical at every run
@@ -261,7 +263,7 @@ cbar.set_label('Median House Value', fontsize=16)
 
 plt.legend(fontsize=16)
 save_fig("california_housing_prices_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[36]:
 corr_matrix = housing.corr()
@@ -300,7 +302,7 @@ corr_matrix["median_house_value"].sort_values(ascending=False)
 housing.plot(kind="scatter", x="rooms_per_household", y="median_house_value",
              alpha=0.2)
 plt.axis([0, 5, 0, 520000])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[43]:
 housing.describe()
@@ -388,6 +390,7 @@ housing_cat.head(10)
 #  For now, we will import it from `future_encoders.py`, but once it is available you can import it directly from `sklearn.preprocessing`.
 
 # In[60]:
+# tobehere
 from hands_on_ml.h_future_encoders import OrdinalEncoder
 
 # In[61]:
@@ -809,9 +812,9 @@ from scipy.stats import geom, expon
 geom_distrib=geom(0.5).rvs(10000, random_state=42)
 expon_distrib=expon(scale=1).rvs(10000, random_state=42)
 plt.hist(geom_distrib, bins=50)
-plt.show()
+show_plt(plt, is_plt_show=False)
 plt.hist(expon_distrib, bins=50)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Exercise solutions
@@ -903,7 +906,7 @@ plt.hist(samples, bins=50)
 plt.subplot(122)
 plt.title("Log of this distribution")
 plt.hist(np.log(samples), bins=50)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The distribution we used for `C` looks quite different: the scale of the samples is picked from a uniform distribution within a given range, which is why the right graph, which represents the log of the samples, looks roughly constant. This distribution is useful when you don't have a clue of what the target scale is:
@@ -918,7 +921,7 @@ plt.hist(samples, bins=50)
 plt.subplot(122)
 plt.title("Log of this distribution")
 plt.hist(np.log(samples), bins=50)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The reciprocal distribution is useful when you have no idea what the scale of the hyperparameter should be (indeed, as you can see on the figure on the right, all scales are equally likely, within the given range), whereas the exponential distribution is best when you know (more or less) what the scale of the hyperparameter should be.

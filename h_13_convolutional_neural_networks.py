@@ -22,6 +22,7 @@ import tensorflow as tf  #slow
 from sklearn.datasets import load_sample_image
 #import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 import matplotlib.image as mpimg
 
 from datasets.mnist_read_gz import get_mnist_gzs
@@ -97,9 +98,9 @@ if True:
     fmap[:, 3, 0, 0] = 1
     fmap[3, :, 0, 1] = 1                                     # filter_height, filter_width, in_channels, out_channels
     plot_image(fmap[:, :, 0, 0])
-    plt.show()
+    show_plt(plt, is_plt_show=False)
     plot_image(fmap[:, :, 0, 1])
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
     # In[6]:
@@ -118,19 +119,19 @@ if True:
     # In[8]:
     plot_image(images[0, :, :, 0])
     save_fig("china_original", tight_layout=False)
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
     # In[9]:
     plot_image(output[0, :, :, 0])
     save_fig("china_vertical", tight_layout=False)
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
     # In[10]:
     plot_image(output[0, :, :, 1])
     save_fig("china_horizontal", tight_layout=False)
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 
@@ -174,14 +175,14 @@ if True:
         output = sess.run(convolution, feed_dict={X: dataset})
 
     plt.imshow(output[0, :, :, 1], cmap="gray") # plot 1st image's 2nd feature map
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
     # In[12]:
     for image_index in (0, 1):
         for feature_map_index in (0, 1):
             plot_image(output[image_index, :, :, feature_map_index])
-            plt.show()
+            show_plt(plt, is_plt_show=False)
 
 
     # Using `tf.layers.conv2d()`:
@@ -204,7 +205,7 @@ if True:
 
     # In[15]:
     plt.imshow(output[0, :, :, 1], cmap="gray") # plot 1st image's 2nd feature map
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 
@@ -258,17 +259,17 @@ if True:
         output = sess.run(max_pool, feed_dict={X: dataset})
 
     plt.imshow(output[0].astype(np.uint8))  # plot the output for the 1st image
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
     # In[20]:
     plot_color_image(dataset[0])
     save_fig("china_original")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
     plot_color_image(output[0])
     save_fig("china_max_pool")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 
@@ -599,7 +600,7 @@ channels = 3
 test_image = mpimg.imread(os.path.join("images","cnn","test_image.png"))[:, :, :channels]
 plt.imshow(test_image)
 plt.axis("off")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Ensure that the values are in the range [-1, 1] (as expected by the pretrained Inception model), instead of [0, 1]:
@@ -805,7 +806,7 @@ for flower_class in flower_classes:
         plt.title("{}x{}".format(example_image.shape[1], example_image.shape[0]))
         plt.imshow(example_image)
         plt.axis("off")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 # Notice how the image dimensions vary, and how difficult the task is in some cases (e.g., the 2nd tulip image).
@@ -874,7 +875,7 @@ plt.figure(figsize=(6, 8))
 plt.imshow(example_image)
 plt.title("{}x{}".format(example_image.shape[1], example_image.shape[0]))
 plt.axis("off")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # There we go:
@@ -886,7 +887,7 @@ plt.figure(figsize=(8, 8))
 plt.imshow(prepared_image)
 plt.title("{}x{}".format(prepared_image.shape[1], prepared_image.shape[0]))
 plt.axis("off")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Now let's look at a few other random images generated from the same original image:
@@ -902,7 +903,7 @@ for row in range(rows):
         plt.title("{}x{}".format(prepared_image.shape[1], prepared_image.shape[0]))
         plt.imshow(prepared_image)
         plt.axis("off")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Looks good!
@@ -966,7 +967,7 @@ plt.figure(figsize=(6, 6))
 plt.imshow(prepared_image)
 plt.title("{}x{}".format(prepared_image.shape[1], prepared_image.shape[0]))
 plt.axis("off")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Looks perfect!

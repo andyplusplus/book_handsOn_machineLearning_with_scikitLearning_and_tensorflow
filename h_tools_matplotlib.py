@@ -35,8 +35,9 @@ import matplotlib
 
 # In[4]:
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.plot([1, 2, 4, 9, 5, 3])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Yep, it's as simple as calling the `plot` function with some data, and then calling the `show` function!
@@ -46,7 +47,7 @@ plt.show()
 
 # In[5]:
 plt.plot([-3, -2, 5, 0], [1, 6, 4, 3])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The axes automatically match the extent of the data.  We would like to give the graph a bit more room, so let's call the `axis` function to change the extent of each axis `[xmin, xmax, ymin, ymax]`.
@@ -54,7 +55,7 @@ plt.show()
 # In[6]:
 plt.plot([-3, -2, 5, 0], [1, 6, 4, 3])
 plt.axis([-4, 6, 0, 7])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Now, let's plot a mathematical function. We use NumPy's `linspace` function to create an array `x` containing 500 floats ranging from -2 to 2, then we create a second array `y` computed as the square of `x` (to learn about NumPy, read the [NumPy tutorial](tools_numpy.ipynb)).
@@ -65,7 +66,7 @@ x = np.linspace(-2, 2, 500)
 y = x**2
 
 plt.plot(x, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # That's a bit dry, let's add a title, and x and y labels, and draw a grid.
@@ -76,7 +77,7 @@ plt.title("Square function")
 plt.xlabel("x")
 plt.ylabel("y = x**2")
 plt.grid(True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Line style and color
@@ -86,7 +87,7 @@ plt.show()
 # In[9]:
 plt.plot([0, 100, 100, 0, 0, 100, 50, 0, 100], [0, 0, 100, 100, 0, 100, 130, 100, 0])
 plt.axis([-10, 110, -10, 140])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can pass a 3rd argument to change the line's style and color.
@@ -95,7 +96,7 @@ plt.show()
 # In[10]:
 plt.plot([0, 100, 100, 0, 0, 100, 50, 0, 100], [0, 0, 100, 100, 0, 100, 130, 100, 0], "g--")
 plt.axis([-10, 110, -10, 140])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can plot multiple lines on one graph very simply: just pass `x1, y1, [style1], x2, y2, [style2], ...`
@@ -105,7 +106,7 @@ plt.show()
 # In[11]:
 plt.plot([0, 100, 100, 0, 0], [0, 0, 100, 100, 0], "r-", [0, 100, 50, 0, 100], [0, 100, 130, 100, 0], "g--")
 plt.axis([-10, 110, -10, 140])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Or simply call `plot` multiple times before calling `show`.
@@ -114,7 +115,7 @@ plt.show()
 plt.plot([0, 100, 100, 0, 0], [0, 0, 100, 100, 0], "r-")
 plt.plot([0, 100, 50, 0, 100], [0, 100, 130, 100, 0], "g--")
 plt.axis([-10, 110, -10, 140])
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can also draw simple points instead of lines. Here's an example with green dashes, red dotted line and blue triangles.
@@ -123,7 +124,7 @@ plt.show()
 # In[13]:
 x = np.linspace(-1.4, 1.4, 30)
 plt.plot(x, x, 'g--', x, x**2, 'r:', x, x**3, 'b^')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # The plot function returns a list of `Line2D` objects (one for each line).  You can set extra attributes on these lines, such as the line width, the dash style or the alpha level.  See the full list of attributes in [the documentation](http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties).
@@ -134,7 +135,7 @@ line1, line2, line3 = plt.plot(x, x, 'g--', x, x**2, 'r:', x, x**3, 'b^')
 line1.set_linewidth(3.0)
 line1.set_dash_capstyle("round")
 line3.set_alpha(0.2)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Saving a figure
@@ -160,7 +161,7 @@ plt.subplot(2, 2, 3)  # 2 rows, 2 columns, 3rd subplot = bottow left
 plt.plot(x, x**3)
 plt.subplot(2, 2, 4)  # 2 rows, 2 columns, 4th subplot = bottom right
 plt.plot(x, x**4)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # * Note that `subplot(223)` is a shorthand for `subplot(2, 2, 3)`.
@@ -174,7 +175,7 @@ plt.subplot(2, 2, 2)  # 2 rows, 2 columns, 2nd subplot = top right
 plt.plot(x, x**2)
 plt.subplot(2, 1, 2)  # 2 rows, *1* column, 2nd subplot = bottom
 plt.plot(x, x**3)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # If you need more complex subplot positionning, you can use `subplot2grid` instead of `subplot`. You specify the number of rows and columns in the grid, then your subplot's position in that grid (top-left = (0,0)), and optionally how many rows and/or columns it spans.  For example:
@@ -188,7 +189,7 @@ plt.subplot2grid((3,3), (1, 2), rowspan=2)
 plt.plot(x, x**4)
 plt.subplot2grid((3,3), (2, 0), colspan=2)
 plt.plot(x, x**5)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # If you need even more flexibility in subplot positioning, check out the [GridSpec documentation](http://matplotlib.org/users/gridspec.html)
@@ -217,7 +218,7 @@ plt.title("y = x**5")
 plt.figure(1)      # back to figure 1, current subplot is 212 (bottom)
 plt.plot(x, -x**3, "r:")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Pyplot's state machine: implicit *vs* explicit
@@ -241,7 +242,7 @@ ax_top.grid(True)
 
 fig2, ax = plt.subplots(1, 1)
 ax.plot(x, x**2)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # For consistency, we will continue to use pyplot's state machine in the rest of this tutorial, but we recommend using the object-oriented interface in your programs.
@@ -268,7 +269,7 @@ plt.text(0, 1.5, "Square function\n$y = x^2$", fontsize=20, color='blue', horizo
 plt.text(px - 0.08, py, "Beautiful point", ha="right", weight="heavy")
 plt.text(px, py, "x = %0.2f\ny = %0.2f"%(px, py), rotation=50, color='gray')
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # * Note: `ha` is an alias for `horizontalalignment`
@@ -282,7 +283,7 @@ plt.plot(x, x**2, px, py, "ro")
 plt.annotate("Beautiful point", xy=(px, py), xytext=(px-1.3,py+0.5),
                            color="green", weight="heavy", fontsize=14,
                            arrowprops={"facecolor": "lightgreen"})
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can also add a bounding box around your text by using the `bbox` attribute:
@@ -296,7 +297,7 @@ plt.text(px-0.2, py, "Beautiful point", bbox=bbox_props, ha="right")
 bbox_props = dict(boxstyle="round4,pad=1,rounding_size=0.2", ec="black", fc="#EEEEFF", lw=5)
 plt.text(0, 1.5, "Square function\n$y = x^2$", fontsize=20, color='black', ha="center", bbox=bbox_props)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Just for fun, if you want an [xkcd](http://xkcd.com)-style plot, just draw within a `with plt.xkcd()` section:
@@ -311,7 +312,7 @@ with plt.xkcd():
     bbox_props = dict(boxstyle="round4,pad=1,rounding_size=0.2", ec="black", fc="#EEEEFF", lw=5)
     plt.text(0, 1.5, "Square function\n$y = x^2$", fontsize=20, color='black', ha="center", bbox=bbox_props)
 
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 # # Legends
@@ -323,7 +324,7 @@ plt.plot(x, x**2, "r--", label="Square function")
 plt.plot(x, x**3, "g-", label="Cube function")
 plt.legend(loc="best")
 plt.grid(True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Non linear scales
@@ -357,7 +358,7 @@ plt.yscale('symlog', linthreshy=0.05)
 plt.title('symlog')
 plt.grid(True)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Ticks and tickers
@@ -394,7 +395,7 @@ plt.title("Manual ticks and tick labels\n(plus minor ticks) on the y-axis")
 
 plt.grid(True)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Polar projection
@@ -407,7 +408,7 @@ theta = np.linspace(0, 2*np.pi*radius, 1000)
 plt.subplot(111, projection='polar')
 plt.plot(theta, np.sin(5*theta), "g-")
 plt.plot(theta, 0.5*np.cos(20*theta), "b-")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # 3D projection
@@ -426,7 +427,7 @@ Z = np.sin(R)
 figure = plt.figure(1, figsize = (12, 4))
 subplot3d = plt.subplot(111, projection='3d')
 surface = subplot3d.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=matplotlib.cm.coolwarm, linewidth=0.1)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Another way to display this same data is *via* a contour plot.
@@ -434,7 +435,7 @@ plt.show()
 # In[31]:
 plt.contourf(X, Y, Z, cmap=matplotlib.cm.coolwarm)
 plt.colorbar()
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Scatter plot
@@ -445,7 +446,7 @@ plt.show()
 from numpy.random import rand
 x, y = rand(2, 100)
 plt.scatter(x, y)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You may also optionally provide the scale of each point.
@@ -454,7 +455,7 @@ plt.show()
 x, y, scale = rand(3, 100)
 scale = 500 * scale ** 5
 plt.scatter(x, y, s=scale)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # And as usual there are a number of other attributes you can set, such as the fill and edge colors and the alpha level.
@@ -468,7 +469,7 @@ for color in ['red', 'green', 'blue']:
 
 plt.grid(True)
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Lines
@@ -491,7 +492,7 @@ plt.vlines(1, -5, 0, color="red")
 plt.hlines(0, -2.5, 1, color="red")
 plot_line(axis=plt.gca(), slope=0.5, intercept=5, color="magenta")
 plt.grid(True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Histograms
@@ -506,7 +507,7 @@ plt.hist(data, bins = [1, 1.5, 2, 2.5, 3], rwidth=0.95)
 plt.xlabel("Value")
 plt.ylabel("Frequency")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[37]:
 data1 = np.random.randn(400)
@@ -524,7 +525,7 @@ plt.xlabel("Value")
 plt.ylabel("Frequency")
 plt.legend()
 plt.grid(True)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Images
@@ -543,7 +544,7 @@ print(img.shape, img.dtype)
 
 # In[39]:
 plt.imshow(img)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Tadaaa! You may want to hide the axes when you are displaying an image:
@@ -551,7 +552,7 @@ plt.show()
 # In[40]:
 plt.imshow(img)
 plt.axis('off')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # It's just as easy to generate your own image:
@@ -560,14 +561,14 @@ plt.show()
 img = np.arange(100*100).reshape(100, 100)
 print(img)
 plt.imshow(img)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # As we did not provide RGB levels, the `imshow` function automatically maps values to a color gradient. By default, the color gradient goes from blue (for low values) to red (for high values), but you can select another color map.  For example:
 
 # In[42]:
 plt.imshow(img, cmap="hot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # You can also generate an RGB image directly:
@@ -578,7 +579,7 @@ img[:, :10] = [0, 0, 0.6]
 img[:, 10:20] = [1, 1, 1]
 img[:, 20:] = [0.6, 0, 0]
 plt.imshow(img)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Since the `img` array is just quite small (20x30), when the `imshow` function displays it, it grows the image to the figure's size. By default it uses [bilinear interpolation](https://en.wikipedia.org/wiki/Bilinear_interpolation) to fill the added pixels. This is why the edges look blurry.
@@ -586,7 +587,7 @@ plt.show()
 
 # In[44]:
 plt.imshow(img, interpolation="nearest")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Animations
@@ -621,7 +622,7 @@ def update_line(num, data, line):
     return line,
 
 line_ani = animation.FuncAnimation(fig, update_line, frames=100, fargs=(data, line), interval=67)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Saving animations to video files

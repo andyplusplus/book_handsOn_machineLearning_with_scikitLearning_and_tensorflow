@@ -154,6 +154,7 @@ np.random.randn(3,4)
 # In[22]:
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 
 # In[23]:
 plt.hist(np.random.rand(100000), normed=True, bins=100, histtype="step", color="blue", label="rand")
@@ -163,7 +164,7 @@ plt.legend(loc = "upper left")
 plt.title("Random distributions")
 plt.xlabel("Value")
 plt.ylabel("Density")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## np.fromfunction
@@ -1076,10 +1077,11 @@ data = np.sin(X*Y/40.5)
 
 # In[168]:
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 import matplotlib.cm as cm
 fig = plt.figure(1, figsize=(7, 6))
 plt.imshow(data, cmap=cm.hot, interpolation="bicubic")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Saving and loading

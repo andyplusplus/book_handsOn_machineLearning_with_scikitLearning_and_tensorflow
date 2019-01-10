@@ -35,6 +35,7 @@ HTML("""<iframe width="560" height="315" src="https://www.youtube.com/embed/2Kaw
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 
 
 # 我们会用到 NumPy 和 TensorFlow：
@@ -81,7 +82,7 @@ for index in range(n_samples):
     plt.imshow(sample_image, cmap="binary")
     plt.axis("off")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # 以及相应的标签：
@@ -863,7 +864,7 @@ for index in range(n_samples):
     plt.title("Label:" + str(mnist.test.labels[index]))
     plt.axis("off")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 plt.figure(figsize=(n_samples * 2, 3))
 for index in range(n_samples):
@@ -872,7 +873,7 @@ for index in range(n_samples):
     plt.imshow(reconstructions[index], cmap="binary")
     plt.axis("off")
     
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # 预测都正确，而且重新构造的图片看上去很棒。阿弥陀佛！
@@ -941,7 +942,7 @@ for dim in range(3):
             plt.subplot(n_samples, n_steps, row * n_steps + col + 1)
             plt.imshow(tweak_reconstructions[dim, col, row], cmap="binary")
             plt.axis("off")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 # # 小结

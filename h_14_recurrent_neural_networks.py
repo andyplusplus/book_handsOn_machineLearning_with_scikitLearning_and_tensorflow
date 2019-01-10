@@ -26,6 +26,7 @@ def reset_graph(seed=42):
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -452,7 +453,7 @@ plt.xlabel("Time")
 
 
 save_fig("time_series_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[43]:
 X_batch, y_batch = next_batch(1, n_steps)
@@ -547,7 +548,7 @@ plt.legend(loc="upper left")
 plt.xlabel("Time")
 
 save_fig("time_series_pred_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Without using an `OutputProjectionWrapper`
@@ -612,7 +613,7 @@ plt.plot(t_instance[1:], y_pred[0,:,0], "r.", markersize=10, label="prediction")
 plt.legend(loc="upper left")
 plt.xlabel("Time")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Generating a creative new sequence
@@ -633,7 +634,7 @@ plt.plot(np.arange(len(sequence)), sequence, "b-")
 plt.plot(t[:n_steps], sequence[:n_steps], "b-", linewidth=3)
 plt.xlabel("Time")
 plt.ylabel("Value")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[65]:
 with tf.Session() as sess:
@@ -663,7 +664,7 @@ plt.plot(t, sequence2, "b-")
 plt.plot(t[:n_steps], sequence2[:n_steps], "b-", linewidth=3)
 plt.xlabel("Time")
 save_fig("creative_sequence_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Deep RNN
@@ -837,7 +838,7 @@ plt.plot(t_instance[1:], y_pred[0,:,0], "r.", markersize=10, label="prediction")
 plt.legend(loc="upper left")
 plt.xlabel("Time")
 
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Oops, it seems that Dropout does not help at all in this particular case. :/

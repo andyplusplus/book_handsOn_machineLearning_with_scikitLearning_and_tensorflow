@@ -29,6 +29,7 @@ def reset_graph(seed=42):
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -68,7 +69,7 @@ plt.title("Sigmoid activation function", fontsize=14)
 plt.axis([-5, 5, -0.2, 1.2])
 
 save_fig("sigmoid_saturation_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # ## Xavier and He Initialization
@@ -115,7 +116,7 @@ plt.title("Leaky ReLU activation function", fontsize=14)
 plt.axis([-5, 5, -0.5, 4.2])
 
 save_fig("leaky_relu_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Implementing Leaky ReLU in TensorFlow:
@@ -228,7 +229,7 @@ plt.title(r"ELU activation function ($\alpha=1$)", fontsize=14)
 plt.axis([-5, 5, -2.2, 3.2])
 
 save_fig("elu_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Implementing ELU in TensorFlow is trivial, just specify the activation function when building each layer:
@@ -262,7 +263,7 @@ plt.title(r"SELU activation function", fontsize=14)
 plt.axis([-5, 5, -2.2, 3.2])
 
 save_fig("selu_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # By default, the SELU hyperparameters (`scale` and `alpha`) are tuned in such a way that the mean remains close to 0, and the standard deviation remains close to 1 (assuming the inputs are standardized with mean 0 and standard deviation 1 too). Using this activation function, even a 100 layer deep neural network preserves roughly mean 0 and standard deviation 1 across all layers, avoiding the exploding/vanishing gradients problem:
@@ -2593,7 +2594,7 @@ plt.axis('off')
 plt.subplot(122)
 plt.imshow(X_batch[:,1].reshape(28 * batch_size, 28), cmap="binary", interpolation="nearest")
 plt.axis('off')
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # And let's look at the labels (0 means "different", 1 means "same"):

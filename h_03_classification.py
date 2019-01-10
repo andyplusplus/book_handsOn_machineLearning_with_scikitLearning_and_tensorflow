@@ -22,6 +22,7 @@ np.random.seed(42)
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -59,6 +60,7 @@ y.shape
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 
 some_digit = X[36000]
 some_digit_image = some_digit.reshape(28, 28)
@@ -67,7 +69,7 @@ plt.imshow(some_digit_image, cmap = matplotlib.cm.binary,
 plt.axis("off")
 
 save_fig("some_digit_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[7]:
 def plot_digit(data):
@@ -98,7 +100,7 @@ plt.figure(figsize=(9,9))
 example_images = np.r_[X[:12000:600], X[13000:30600:600], X[30600:60000:590]]
 plot_digits(example_images, images_per_row=10)
 save_fig("more_digits_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[10]:
 y[36000]
@@ -247,7 +249,7 @@ plt.figure(figsize=(8, 4))
 plot_precision_recall_vs_threshold(precisions, recalls, thresholds)
 plt.xlim([-700000, 700000])
 save_fig("precision_recall_vs_threshold_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[39]:
 (y_train_pred == (y_scores > 0)).all()
@@ -271,7 +273,7 @@ def plot_precision_vs_recall(precisions, recalls):
 plt.figure(figsize=(8, 6))
 plot_precision_vs_recall(precisions, recalls)
 save_fig("precision_vs_recall_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # ROC curves
@@ -292,7 +294,7 @@ def plot_roc_curve(fpr, tpr, label=None):
 plt.figure(figsize=(8, 6))
 plot_roc_curve(fpr, tpr)
 save_fig("roc_curve_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[46]:
 from sklearn.metrics import roc_auc_score
@@ -315,7 +317,7 @@ plt.plot(fpr, tpr, "b:", linewidth=2, label="SGD")
 plot_roc_curve(fpr_forest, tpr_forest, "Random Forest")
 plt.legend(loc="lower right", fontsize=16)
 save_fig("roc_curve_comparison_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[50]:
 roc_auc_score(y_train_5, y_scores_forest)
@@ -388,7 +390,7 @@ def plot_confusion_matrix(matrix):
 # In[66]:
 plt.matshow(conf_mx, cmap=plt.cm.gray)
 save_fig("confusion_matrix_plot", tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[67]:
 row_sums = conf_mx.sum(axis=1, keepdims=True)
@@ -398,7 +400,7 @@ norm_conf_mx = conf_mx / row_sums
 np.fill_diagonal(norm_conf_mx, 0)
 plt.matshow(norm_conf_mx, cmap=plt.cm.gray)
 save_fig("confusion_matrix_errors_plot", tight_layout=False)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[69]:
 cl_a, cl_b = 3, 5
@@ -413,7 +415,7 @@ plt.subplot(222); plot_digits(X_ab[:25], images_per_row=5)
 plt.subplot(223); plot_digits(X_ba[:25], images_per_row=5)
 plt.subplot(224); plot_digits(X_bb[:25], images_per_row=5)
 save_fig("error_analysis_digits_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Multilabel classification
@@ -454,7 +456,7 @@ some_index = 5500
 plt.subplot(121); plot_digit(X_test_mod[some_index])
 plt.subplot(122); plot_digit(y_test_mod[some_index])
 save_fig("noisy_digit_example_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[75]:
 knn_clf.fit(X_train_mod, y_train_mod)
@@ -580,7 +582,7 @@ plt.imshow(shifted_image_down.reshape(28, 28), interpolation="nearest", cmap="Gr
 plt.subplot(133)
 plt.title("Shifted left", fontsize=14)
 plt.imshow(shifted_image_left.reshape(28, 28), interpolation="nearest", cmap="Greys")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 # In[95]:
 X_train_augmented = [image for image in X_train]
@@ -831,7 +833,7 @@ plt.plot([1]*10, svm_scores, ".")
 plt.plot([2]*10, forest_scores, ".")
 plt.boxplot([svm_scores, forest_scores], labels=("SVM","Random Forest"))
 plt.ylabel("Accuracy", fontsize=14)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # To improve this result further, you could:

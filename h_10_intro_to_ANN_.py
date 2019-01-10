@@ -24,6 +24,7 @@ def reset_graph(seed=42):
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -91,7 +92,7 @@ if False:
     plt.axis(axes)
 
     save_fig("perceptron_iris_plot")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 # # Activation functions
@@ -135,7 +136,7 @@ if False:
     plt.axis([-5, 5, -0.2, 1.2])
 
     save_fig("activation_functions_plot")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 # In[7]:
 def heaviside(z):

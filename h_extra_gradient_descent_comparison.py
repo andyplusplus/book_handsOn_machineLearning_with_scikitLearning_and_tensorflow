@@ -13,6 +13,7 @@ import numpy as np
 
 # get_ipython().run_line_magic('matplotlib', 'nbagg')
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 from matplotlib.animation import FuncAnimation
 
 # In[2]:
@@ -147,5 +148,5 @@ def animate(i):
 
 # In[13]:
 animation = FuncAnimation(fig, animate, frames=n_iter)
-plt.show()
+show_plt(plt, is_plt_show=False)
 

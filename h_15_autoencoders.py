@@ -30,6 +30,7 @@ def reset_graph(seed=42):
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -141,7 +142,7 @@ plt.plot(codings_val[:,0], codings_val[:, 1], "b.")
 plt.xlabel("$z_1$", fontsize=18)
 plt.ylabel("$z_2$", fontsize=18, rotation=0)
 save_fig("linear_autoencoder_pca_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # # Stacked Autoencoders
@@ -557,7 +558,7 @@ for i in range(5):
     plot_image(weights1_val.T[i])
 
 save_fig("extracted_features_plot") # not shown
-plt.show()                          # not shown
+show_plt(plt, is_plt_show=False)                          # not shown
 
 
 # # Unsupervised pretraining
@@ -1022,7 +1023,7 @@ n_rows = 6
 n_cols = 10
 plot_multiple_images(outputs_val.reshape(-1, 28, 28), n_rows, n_cols)
 save_fig("generated_digits_plot")
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 # Note that the latent loss is computed differently in this second variant:
@@ -1082,7 +1083,7 @@ with tf.Session() as sess:
         for digit_index in range(n_digits):
             plt.subplot(1, n_digits, digit_index + 1)
             plot_image(outputs_val[digit_index])
-        plt.show()
+        show_plt(plt, is_plt_show=False)
 
 
 # # Exercise solutions

@@ -14,6 +14,7 @@ rnd.seed(42)
 import matplotlib
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
+from my_utility import show_plt
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -42,7 +43,7 @@ if False:
     plt.imshow(img)
     plt.axis("off")
     save_fig("MsPacman")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 
@@ -54,7 +55,7 @@ def plot_environment(env, figsize=(5,4)):
     img = env.render(mode="rgb_array")
     plt.imshow(img)
     plt.axis("off")
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 # env.action_space  #Discrete(9)
 
@@ -106,7 +107,7 @@ def plot_animation(frames, repeat=False, interval=40):
 # tobeplot ： animation
 if False:
     video = plot_animation(frames)
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 env.close()
 
@@ -166,7 +167,7 @@ if True:
         img = render_cart_pole(env, obs)
         plt.imshow(img)
         plt.axis("off")
-        plt.show()
+        show_plt(plt, is_plt_show=False)
 
     plot_cart_pole(env, obs)
 
@@ -229,7 +230,7 @@ if False:
 
 
     video = plot_animation(frames)
-    plt.show()
+    show_plt(plt, is_plt_show=False)
 
 
 
@@ -279,7 +280,7 @@ env.close()
 
 
 video = plot_animation(frames)
-plt.show()
+show_plt(plt, is_plt_show=False)
 
 
 
