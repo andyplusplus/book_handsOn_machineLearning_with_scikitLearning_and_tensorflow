@@ -330,6 +330,7 @@ sample_incomplete_rows["total_bedrooms"].fillna(median, inplace=True) # option 3
 sample_incomplete_rows
 
 # In[49]:
+# from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import Imputer
 
 
@@ -391,7 +392,7 @@ housing_cat.head(10)
 
 # In[60]:
 # tobehere
-from hands_on_ml.h_future_encoders import OrdinalEncoder
+from h_future_encoders import OrdinalEncoder
 
 # In[61]:
 ordinal_encoder = OrdinalEncoder()
@@ -405,7 +406,7 @@ ordinal_encoder.categories_
 # **Warning**: earlier versions of the book used the `LabelBinarizer` or `CategoricalEncoder` classes to convert each categorical value to a one-hot vector. It is now preferable to use the `OneHotEncoder` class. Right now it can only handle integer categorical inputs, but in Scikit-Learn 0.20 it will also handle string categorical inputs (see [PR #10521](https://github.com/scikit-learn/scikit-learn/issues/10521)). So for now we import it from `future_encoders.py`, but when Scikit-Learn 0.20 is released, you can import it from `sklearn.preprocessing` instead:
 
 # In[63]:
-from hands_on_ml.h_future_encoders import OneHotEncoder
+from h_future_encoders import OneHotEncoder
 
 cat_encoder = OneHotEncoder()
 housing_cat_1hot = cat_encoder.fit_transform(housing_cat)
@@ -483,7 +484,7 @@ housing_num_tr
 # **Warning**: earlier versions of the book applied different transformations to different columns using a solution based on a `DataFrameSelector` transformer and a `FeatureUnion` (see below). It is now preferable to use the `ColumnTransformer` class that will be introduced in Scikit-Learn 0.20. For now we import it from `future_encoders.py`, but when Scikit-Learn 0.20 is released, you can import it from `sklearn.compose` instead:
 
 # In[71]:
-from hands_on_ml.h_future_encoders import ColumnTransformer
+from h_future_encoders import ColumnTransformer
 
 # In[72]:
 num_attribs = list(housing_num)

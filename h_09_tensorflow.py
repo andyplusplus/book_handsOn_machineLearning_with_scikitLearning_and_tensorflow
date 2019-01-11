@@ -1,6 +1,4 @@
-
-n_epochs_4_test = 1
-
+n_epochs_4_test = 10
 ######################################### Setup ######################
 
 # Common imports
@@ -15,7 +13,7 @@ rnd.seed(42)
 
 import matplotlib
 import matplotlib.pyplot as plt
-from my_utility import show_plt
+from my_utility import show_plt, get_log_dir
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -290,6 +288,7 @@ if True:
     print("Best theta:")
     print(best_theta)
 
+# tobehere
 # # Saving and restoring a model
 
 # In[27]:
@@ -326,6 +325,7 @@ if True:
 
     print("Best theta:")
     print(best_theta)
+
 
 # # Visualizing the graph
 # ## inside Jupyter
@@ -375,18 +375,12 @@ if False:
     # In[30]:
     show_graph(tf.get_default_graph())
 
+## tobehere  tensorboard 1
 # ## Using TensorBoard
 
 # In[31]:   P243
-
-if True:
+if True: # tensorboard 1: p243
     tf.reset_default_graph()
-
-    from datetime import datetime
-
-    now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-    root_logdir = "tf_logs"
-    logdir = "{}/run-{}/".format(root_logdir, now)
 
     n_epochs = 1000
     learning_rate = 0.01
@@ -395,18 +389,19 @@ if True:
     y = tf.placeholder(tf.float32, shape=(None, 1), name="y")
     theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0, seed=42), name="theta")
     y_pred = tf.matmul(X, theta, name="predictions")
-    error = y_pred - y
+    error = y_pred - y    #####################    #####################
     mse = tf.reduce_mean(tf.square(error), name="mse")
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
     training_op = optimizer.minimize(mse)
 
     init = tf.global_variables_initializer()
 
+    logdir = get_log_dir()   #####################    #####################
     mse_summary = tf.summary.scalar('MSE', mse)
-    summary_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
+    summary_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())    #####################    #####################
 
     # In[32]:
-    n_epochs = min(10, n_epochs_4_test)
+    n_epochs = max(10, n_epochs_4_test)
     batch_size = 100
     n_batches = int(np.ceil(m / batch_size))
 
@@ -416,7 +411,7 @@ if True:
         for epoch in range(n_epochs):
             for batch_index in range(n_batches):
                 X_batch, y_batch = fetch_batch(epoch, batch_index, batch_size)
-                if batch_index % 10 == 0:
+                if batch_index % 10 == 0:    #####################    #####################
                     summary_str = mse_summary.eval(feed_dict={X: X_batch, y: y_batch})
                     step = epoch * n_batches + batch_index
                     summary_writer.add_summary(summary_str, step)
@@ -433,11 +428,8 @@ if True:
 
 
     # In[33]:
+if True: # tensorboard 2: p245
     tf.reset_default_graph()
-
-    now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-    root_logdir = "tf_logs"
-    logdir = "{}/run-{}/".format(root_logdir, now)
 
     n_epochs = min(1000, n_epochs_4_test)
     learning_rate = 0.01
@@ -446,7 +438,7 @@ if True:
     y = tf.placeholder(tf.float32, shape=(None, 1), name="y")
     theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0, seed=42), name="theta")
     y_pred = tf.matmul(X, theta, name="predictions")
-    with tf.name_scope('loss') as scope:
+    with tf.name_scope('loss') as scope:    #245 ####################    #####################
         error = y_pred - y
         mse = tf.reduce_mean(tf.square(error), name="mse")
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
@@ -454,6 +446,7 @@ if True:
 
     init = tf.global_variables_initializer()
 
+    logdir = get_log_dir()   #####################    #####################
     mse_summary = tf.summary.scalar('MSE', mse)
     summary_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
 
@@ -481,10 +474,6 @@ if True:
     print("Best theta:")
     print(best_theta)
 
-
-
-
-
     # In[35]:
     print(error.op.name)
 
@@ -506,13 +495,10 @@ with tf.name_scope("param"):  # name == "param_1"
 for node in (a1, a2, a3, a4):
     print(node.op.name)
 
-print("TOBEHERE")
+summary_writer = tf.summary.FileWriter("logs/relu-1", tf.get_default_graph())
 
-# # Modularity
 
-# An ugly flat code:
-
-# In[38]:
+# 38: relu0 # # Modularity p246: # An ugly flat code:
 tf.reset_default_graph()
 
 n_features = 3
@@ -531,11 +517,14 @@ relu2 = tf.maximum(linear2, 0, name="relu2")  # Oops, cut&paste error! Did you s
 
 output = tf.add_n([relu1, relu2], name="output")
 
-# Much better, using a function to build the ReLUs:
+summary_writer = tf.summary.FileWriter("logs/relu0", tf.get_default_graph())
 
-# In[39]:
+
+
+
+
+# 39: relu1  p247 # Much better, using a function to build the ReLUs:
 tf.reset_default_graph()
-
 
 def relu(X):
     w_shape = int(X.get_shape()[1]), 1
@@ -544,18 +533,18 @@ def relu(X):
     linear = tf.add(tf.matmul(X, w), b, name="linear")
     return tf.maximum(linear, 0, name="relu")
 
-
 n_features = 3
 X = tf.placeholder(tf.float32, shape=(None, n_features), name="X")
 relus = [relu(X) for i in range(5)]
 output = tf.add_n(relus, name="output")
 summary_writer = tf.summary.FileWriter("logs/relu1", tf.get_default_graph())
 
-# Even better using name scopes:
 
-# In[40]:
+
+
+
+# 40 relu2: # Even better using name scopes:
 tf.reset_default_graph()
-
 
 def relu(X):
     with tf.name_scope("relu"):
@@ -572,13 +561,13 @@ relus = [relu(X) for i in range(5)]
 output = tf.add_n(relus, name="output")
 
 summary_writer = tf.summary.FileWriter("logs/relu2", tf.get_default_graph())
-
-# In[41]:
 summary_writer.close()
 
-# Sharing a `threshold` variable the classic way, by defining it outside of the `relu()` function then passing it as a parameter:
 
-# In[42]: as parameter
+
+
+
+# 42 relu3 : as parameter # Sharing a `threshold` variable the classic way, by defining it outside of the `relu()` function then passing it as a parameter:
 
 tf.reset_default_graph()
 
@@ -594,11 +583,13 @@ threshold = tf.Variable(0.0, name="threshold")
 X = tf.placeholder(tf.float32, shape=(None, n_features), name="X")
 relus = [relu(X, threshold) for i in range(5)]
 output = tf.add_n(relus, name="output")
+summary_writer = tf.summary.FileWriter("logs/relu3", tf.get_default_graph())
+summary_writer.close()
 
 
 
 
-# In[43]: as attribute
+# In[43]: as attribute   relu4
 
 tf.reset_default_graph()
 
@@ -616,10 +607,14 @@ def relu(X):
 X = tf.placeholder(tf.float32, shape=(None, n_features), name="X")
 relus = [relu(X) for i in range(5)]
 output = tf.add_n(relus, name="output")
+summary_writer = tf.summary.FileWriter("logs/relu4", tf.get_default_graph())
+summary_writer.close()
 
-# In[44]: as get_variable
 
 
+
+
+# 44 relu6 : as get_variable    relu6
 tf.reset_default_graph()
 
 def relu(X):
@@ -640,9 +635,11 @@ output = tf.add_n(relus, name="output")
 summary_writer = tf.summary.FileWriter("logs/relu6", tf.get_default_graph())
 summary_writer.close()
 
-# In[45]:
-tf.reset_default_graph()
 
+
+
+# In[45]: relu8
+tf.reset_default_graph()
 
 def relu(X):
     with tf.variable_scope("relu"):
@@ -663,6 +660,8 @@ output = tf.add_n(relus, name="output")
 
 summary_writer = tf.summary.FileWriter("logs/relu8", tf.get_default_graph())
 summary_writer.close()
+
+
 
 # In[46]:
 tf.reset_default_graph()
