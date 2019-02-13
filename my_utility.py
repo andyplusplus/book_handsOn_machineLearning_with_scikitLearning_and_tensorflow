@@ -11,6 +11,6 @@ def show_plt(plt, is_plt_show=False):
 def get_log_dir(root="tf_logs"):
     global log_dir_index
     now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-    log_dir = "{}/run-{}-{}/".format(root, now, log_dir_index)
+    log_dir = "{}/tf_logs/run-{}-{}/".format(root, now, log_dir_index)
     log_dir_index += 1
     return log_dir
