@@ -2,7 +2,13 @@ from datetime import datetime
 log_dir_index = 0
 
 
-def show_plt(plt, is_plt_show=False):
+def show_plt(plt, is_plt_show=True):
+    if is_plt_show:
+        show_plt(plt, is_plt_show=False)
+    else:
+        pass
+
+def show_plt1(plt, is_plt_show=False):
     if is_plt_show:
         show_plt(plt, is_plt_show=False)
     else:
